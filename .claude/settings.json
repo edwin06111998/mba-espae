@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(python3 tools/aula.py *)",
+      "Bash(python tools/aula.py *)",
+      "Bash(python3 --version)",
+      "Bash(python --version)",
+      "Bash(open https://postgradosvirtual.espol.edu.ec/*)",
+      "Bash(git pull)",
+      "Bash(mkdir -p mi-trabajo/*)",
+      "Bash(cp -R plantillas/*)",
+      "Bash(cp plantillas/perfil-local.md CLAUDE.local.md)",
+      "Bash(pdftotext *)",
+      "Read(./mi-trabajo/**)",
+      "Edit(./mi-trabajo/**)",
+      "Write(./mi-trabajo/**)",
+      "Edit(./CLAUDE.local.md)",
+      "Write(./CLAUDE.local.md)"
+    ],
+    "ask": [
+      "Bash(python3 tools/aula.py entregar *)",
+      "Bash(python3 tools/aula.py comentar *)",
+      "Bash(python3 tools/aula.py sync *)",
+      "Bash(python tools/aula.py entregar *)",
+      "Bash(python tools/aula.py comentar *)",
+      "Bash(python tools/aula.py sync *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Edit(./.env)",
+      "Bash(curl *postgradosvirtual*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && { python3 tools/aula.py contexto 2>/dev/null || python tools/aula.py contexto 2>/dev/null || echo \"CONFIGURACIÓN PENDIENTE: no se encontró Python en esta computadora. Ofrece /configurar, que explica cómo instalarlo.\"; }",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

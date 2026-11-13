@@ -1,0 +1,24 @@
+# ── Secretos (cada quien tiene su propio token)
+.env
+.env.*
+!.env.example
+api-token*.txt
+
+# ── Trabajo personal: nunca se versiona
+mi-trabajo/
+/CLAUDE.local.md
+.claude/settings.local.json
+
+# ── Material del curso (PDFs con copyright, pesados): se descarga bajo demanda
+*.pdf
+*.pptx
+*.docx
+*.xlsx
+*.epub
+!docs/**/*.pdf
+
+# ── Sistema
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
